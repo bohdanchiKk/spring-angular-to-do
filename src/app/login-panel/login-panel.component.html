@@ -1,1 +1,28 @@
-<p>login-panel works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration Page</title>
+</head>
+<body>
+<form [formGroup]="userForm" (ngSubmit)="handleSubmit()">
+  <h2>User Registration</h2>
+  <input type="text" name="username" placeholder="Username" required formControlName="username" >
+  <br>
+  <input type="password" name="password" placeholder="Password" required formControlName="password">
+  <br>
+  <input type="text" name="name" placeholder="Name" required formControlName="firstName">
+  <br>
+  <input type="text" name="lastname" placeholder="Lastname" required formControlName="lastName">
+  <br>
+  <input type="email" name="email" placeholder="Email" required formControlName="email">
+  <br>
+  <textarea name="about_me" placeholder="About Me" formControlName="aboutMe"></textarea>
+  <br>
+  <button type="submit" >Register</button>
+  <a href="login.html" class="login-link">Already have an account? Login here</a>
+</form>
+</body>
+</html>
+
