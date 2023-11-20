@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+// @ts-ignore
+
+import {Component, inject, Injectable} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClient, provideHttpClient, withFetch} from "@angular/common/http";
+
 
 
 @Component({
@@ -11,6 +14,7 @@ import {HttpClient, provideHttpClient, withFetch} from "@angular/common/http";
   styleUrl: './login-panel.component.css',
   templateUrl: './login-panel.component.html'
 })
+
 export class LoginPanelComponent {
 
   constructor(private http:HttpClient) {
@@ -23,10 +27,34 @@ export class LoginPanelComponent {
     email: new FormControl(''),
     aboutMe: new FormControl(''),
   });
-
   handleSubmit() {
-    let userToSend = new user(this.userForm.value.username, this.userForm.value.password, this.userForm.value.firstName, this.userForm.value.lastName, this.userForm.value.email, this.userForm.value.aboutMe);
-    this.http.put('http://localhost:8080/create',userToSend);
+    let info = this.userForm.value;
+    let newUser = new user(this.userForm.value.username, this.userForm.value.password, this.userForm.value.firstName, this.userForm.value.lastName, this.userForm.value.email, this.userForm.value.aboutMe);
+    // let newUser = user(this.userForm.value.username, this.userForm.value.password, this.userForm.value.firstName, this.userForm.value.lastName, this.userForm.value.email, this.userForm.value.aboutMe);
+    // let userToSend = new user(this.userForm.value.username, this.userForm.value.password, this.userForm.value.firstName, this.userForm.value.lastName, this.userForm.value.email, this.userForm.value.aboutMe);
+    this.http.post('http://localhost:8080/create',newUser).subscribe((resp)=>console.log('Posted',resp));
 
   }
 }
+class user {
+
+  username:any;
+  password:any;
+  firstName:any;
+  lastName:any;
+  email:any;
+  aboutMe:any;
+  constructor(
+    username:any,
+    password:any,
+    firstName:any,
+    lastName:any,
+    email:any,
+    aboutMe:any) {
+    this.username = username,
+      this.password = password,
+      this.firstName = firstName,
+      this.lastName = lastName,
+      this.email = email,
+      this.aboutMe = aboutMe
+  }}
