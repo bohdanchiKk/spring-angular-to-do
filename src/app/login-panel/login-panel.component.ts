@@ -4,11 +4,12 @@ import {Component, inject, Injectable} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClient, provideHttpClient, withFetch} from "@angular/common/http";
+import {Router, RouterOutlet} from "@angular/router";
 
 
 
 @Component({
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterOutlet],
   selector: 'app-login-panel',
   standalone: true,
   styleUrl: './login-panel.component.css',
@@ -17,7 +18,7 @@ import {HttpClient, provideHttpClient, withFetch} from "@angular/common/http";
 
 export class LoginPanelComponent {
 
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient,private router:Router) {
   }
   userForm = new FormGroup({
     username: new FormControl(''),
@@ -34,6 +35,12 @@ export class LoginPanelComponent {
     // let userToSend = new user(this.userForm.value.username, this.userForm.value.password, this.userForm.value.firstName, this.userForm.value.lastName, this.userForm.value.email, this.userForm.value.aboutMe);
     this.http.post('http://localhost:8080/create',newUser).subscribe((resp)=>console.log('Posted',resp));
 
+  }
+
+  Move(linkName: string) {
+    if(linkName=='login'){
+      this.router.navigate(['login']);
+    }
   }
 }
 class user {

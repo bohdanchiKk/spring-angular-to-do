@@ -14,7 +14,15 @@
   <br>
 
   <button type="submit">Login</button>
-  <a href="registration.html" class="register-link">Don't have an account? Register here</a>
+  <a   class="register-link" >Don't have an account? Register here</a>
+
 </form>
+<button type="submit" (click)="handleTestLoggedIn()">Test Logged In</button>
+
+<!--<button (click)="DynamicRouter('student')">Move</button>-->
+<!--<button (click)="DynamicRouter('create')" >Move</button>-->
+<button routerLink="/create"  >Move</button>
+<a routerLink="/create" class="register-link" >Change the state</a>
+<router-outlet></router-outlet>
 </body>
 </html>

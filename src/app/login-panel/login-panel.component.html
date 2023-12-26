@@ -21,7 +21,9 @@
   <textarea name="about_me" placeholder="About Me" formControlName="aboutMe"></textarea>
   <br>
   <button type="submit">Register</button>
-  <a href="login.html" class="login-link">Already have an account? Login here</a>
+
+  <button (click)="Move('login')">Already have an account? Login here</button>
+  <router-outlet></router-outlet>
 </form>
 </body>
 </html>
